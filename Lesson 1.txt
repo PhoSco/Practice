@@ -1,0 +1,98 @@
+##LESSON 1##
+#Exercise 1 (factorial function)
+
+def factorial(n):
+	saved_val = 1
+	for i in range(n):
+		v = (n-i)*saved_val
+		saved_val = v
+	return v
+
+factorial(3)
+
+
+#Exercise 2 (one draw of binary rv)
+
+from random import uniform
+
+def binomial_rv(n, p):
+	w = 0
+	for i in range(n):
+		U = uniform(0,1)
+		v = 1 if U < p else 0
+		w = v + w 
+	return w
+
+binomial_rv(100,0.5)
+
+
+#Exercise 3 (pi approximation using monte carlo)
+
+from random import uniform
+from math import sqrt
+
+def pi(n):
+	c = 0
+	for i in range(n):
+		x = uniform(0,1)
+		y = uniform(0,1)
+		radius = sqrt(x*x + y*y)
+		count = 1 if radius < 1 else 0
+		c = (count + c)
+		prob = c / n
+		p = prob / 0.25
+	return p
+pi(1000)
+
+#Exrecise 4 (coin flip game)
+
+from random import uniform
+
+def tripleflip(n):
+	c = 0
+	store = 0
+	for i in range(n):
+		U = uniform(0,1)	
+		flip = 1 if U > 0.5 else 0		#1=head 0=tails
+		c = flip + c if flip == 1 else 0
+		store = 1 if c == 3 else store
+	return store
+tripleflip(10)
+
+#Exercise 5
+
+import matplotlib.pyplot as plt
+from random import normalvariate
+
+def xt1(t):
+	xt1_vals = []
+	y = 0
+	for i in range(t):
+		e = normalvariate(-1,1)
+		y = 0.9*y + e
+		xt1_vals.append(y)
+	return xt1_vals
+data = xt1(200)
+plt.plot(data, 'b-')
+plt.show()
+
+#Exercise 6
+
+import matplotlib.pyplot as plt
+from random import normalvariate
+
+def xt(t,a):
+	xt_vals = []
+	y = 0
+	for i in range(t):
+		e = normalvariate(0,1)
+		y = a*y + e
+		xt_vals.append(y)
+	return xt_vals
+
+alpha = [0, .8, .98]
+for a in alpha:
+	data = xt(200,a)
+	plt.plot(data, label = "alpha = a")
+plt.legend()
+plt.show()
