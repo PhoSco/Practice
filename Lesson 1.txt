@@ -44,6 +44,7 @@ def pi(n):
 	return p
 pi(1000)
 
+
 #Exrecise 4 (coin flip game)
 
 from random import uniform
@@ -58,6 +59,7 @@ def tripleflip(n):
 		store = 1 if c == 3 else store
 	return store
 tripleflip(10)
+
 
 #Exercise 5
 
@@ -75,6 +77,7 @@ def xt1(t):
 data = xt1(200)
 plt.plot(data, 'b-')
 plt.show()
+
 
 #Exercise 6
 
